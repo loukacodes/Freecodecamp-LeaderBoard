@@ -1,0 +1,104 @@
+let names, avatar, recentPoint, allTimePoint, rank;
+
+const url1 = "https://fcctop100.herokuapp.com/api/fccusers/top/recent";
+const url2 = "https://fcctop100.herokuapp.com/api/fccusers/top/alltime";
+
+class Camper extends React.Component { 
+  constructor(props) {
+    super(props);
+  }
+  
+ 
+  render() {
+    rank = this.props.data.map((x,i) => i+1)
+    avatar = this.props.data.map(x => x.img)
+    names = this.props.data.map(x => x.username)
+    recentPoint = this.props.data.map(x => x.recent)
+    allTimePoint = this.props.data.map(x => x.alltime)
+    return (
+    
+      <tbody>
+        
+        {rank.map((item,i) => {
+          return (
+            <tr key={i}>
+              <td className="rank">{item}</td>
+              <td className="name">
+                <a href={"https://www.freecodecamp.com/" + names[i]} target="_blank"><img src={avatar[i]} className="avatar"/><p>{names[i]}</p></a>
+              </td>
+              <td className="recent">{recentPoint[i]}</td>
+              <td className="alltime">{allTimePoint[i]}</td>
+            </tr>
+          )
+        })}
+      </tbody>
+    
+    )
+  }
+}
+
+class LeaderBoard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      url: url1
+    }
+    this.thirtyDayBoard = this.thirtyDayBoard.bind(this);
+    this.alltimeBoard = this.alltimeBoard.bind(this);
+    this.loadData = this.loadData.bind(this);
+  }
+  
+  thirtyDayBoard() {
+     this.setState({
+        url: url1
+     }, this.loadData)
+  }
+  
+  alltimeBoard() {
+     this.setState({
+       url: url2
+     }, this.loadData)
+  }
+  
+  
+   loadData() {
+     $.ajax({
+      url: this.state.url,
+      dataType: 'json',
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error('#GET Error', status, err.toString());
+      }.bind(this)
+     });
+  }
+  
+
+  componentDidMount() {
+    this.loadData();
+  }
+  
+  render() {
+    return (
+      <div>
+        <h1>LeaderBoard</h1>
+        <div></div>
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Camper Name</th>
+              <th onClick={this.thirtyDayBoard}>Points in past 30 days</th>
+              <th onClick={this.alltimeBoard}>All time points</th>
+            </tr>
+          </thead>
+          <Camper data={this.state.data}/>
+        </table>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<LeaderBoard />, document.getElementById('react'))

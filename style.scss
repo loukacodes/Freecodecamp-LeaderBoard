@@ -1,0 +1,73 @@
+$fcc-color: #006400;
+$text-color: #efefef;
+
+h1 {
+  text-align: center;
+  padding: .5em;
+  color: shade($fcc-color, 20%);
+  font-size: 3em;
+}
+
+h1 + div {
+  width: 300px;
+  height: 30px;
+  background: tint($fcc-color, 20%);
+  margin: auto;
+  position: relative;
+  top: -60px;
+  z-index: -1;
+}
+table {
+  margin: 1em auto;
+  text-align: center;
+  tr, td, th {
+    border: 1px solid $fcc-color;
+  }
+  thead{
+    th {
+      padding: .5em 1em;
+      text-transform: uppercase;
+    }
+    th:nth-child(4):hover, 
+    th:nth-child(3) {
+      cursor: pointer;
+    }
+  }
+  
+  
+  
+  tbody {
+    border: 1px solid $fcc-color;
+    tr:nth-child(odd) {
+      background: rgba( $fcc-color, .9 );
+      color: $text-color;
+    }
+    tr:nth-child(even) {
+      background: darken( $fcc-color, 10% );
+      color: $text-color;
+    }
+    .name {
+      text-align: left;
+      font-weight: bold;
+      padding-right: 5em;
+      a {
+        color: $text-color;
+        &:hover {
+          color: #ff4025;
+        }
+      }
+      
+      .avatar {
+        margin: .2em .5em;
+        width: 40px;
+        height: 40px;
+      }
+      
+      p {
+        display:inline-block;
+        margin: 0;
+      }
+    }
+  }
+  
+}
