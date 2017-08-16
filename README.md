@@ -7,4 +7,4 @@ Show a table of the **freeCodeCamp** campers who've earned the most brownie poin
 * Get more familiar with *React*
 
 
-[View Live Demo here](https://trangtmtran.github.io/Freecodecamp-LeaderBoard/)
+[View Live Demo here](https://codepen.io/trangtran/full/ZJWWKR/)
