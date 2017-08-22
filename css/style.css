@@ -1,0 +1,63 @@
+h1 {
+  text-align: center;
+  padding: .5em;
+  color: #005000;
+  font-size: 3em;
+}
+
+h1 + div {
+  width: 300px;
+  height: 30px;
+  background: #338333;
+  margin: auto;
+  position: relative;
+  top: -60px;
+  z-index: -1;
+}
+
+table {
+  margin: 1em auto;
+  text-align: center;
+}
+table tr, table td, table th {
+  border: 1px solid #006400;
+}
+table thead th {
+  padding: .5em 1em;
+  text-transform: uppercase;
+}
+table thead th:nth-child(4):hover,
+table thead th:nth-child(3) {
+  cursor: pointer;
+}
+table tbody {
+  border: 1px solid #006400;
+}
+table tbody tr:nth-child(odd) {
+  background: rgba(0, 100, 0, 0.9);
+  color: #efefef;
+}
+table tbody tr:nth-child(even) {
+  background: #003100;
+  color: #efefef;
+}
+table tbody .name {
+  text-align: left;
+  font-weight: bold;
+  padding-right: 5em;
+}
+table tbody .name a {
+  color: #efefef;
+}
+table tbody .name a:hover {
+  color: #ff4025;
+}
+table tbody .name .avatar {
+  margin: .2em .5em;
+  width: 40px;
+  height: 40px;
+}
+table tbody .name p {
+  display: inline-block;
+  margin: 0;
+}
